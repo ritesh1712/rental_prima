@@ -8,22 +8,22 @@ const Sidebar = () => {
       <div>
         <h1 className="text-2xl font-bold mb-6">RentMarket</h1>
         <nav className="space-y-2">
-          <Link href="/crm/marketplace" className="block p-3 rounded-md bg-gray-100 font-semibold">
+          <Link href="/marketplace" className="block p-3 rounded-md bg-gray-100 font-semibold">
             Marketplace
           </Link>
-          <Link href="/crm/dashboard" className="block p-3 rounded-md hover:bg-gray-100">
+          <Link href="/" className="block p-3 rounded-md hover:bg-gray-100">
             Dashboard
           </Link>
-          <Link href="/crm/listings" className="block p-3 rounded-md hover:bg-gray-100">
+          <Link href="/listings" className="block p-3 rounded-md hover:bg-gray-100">
             Listings
           </Link>
-          <Link href="/crm/requests" className="block p-3 rounded-md hover:bg-gray-100">
+          <Link href="/requests" className="block p-3 rounded-md hover:bg-gray-100">
             Requests
           </Link>
-          <Link href="/crm/categories" className="block p-3 rounded-md hover:bg-gray-100">
+          <Link href="/categories" className="block p-3 rounded-md hover:bg-gray-100">
             Categories
           </Link>
-          <Link href="/crm/settings" className="block p-3 rounded-md hover:bg-gray-100">
+          <Link href="/settings" className="block p-3 rounded-md hover:bg-gray-100">
           Settings
           </Link>
         </nav>

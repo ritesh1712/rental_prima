@@ -1,139 +1,234 @@
-// import Link from 'next/link';
-// import { useState } from 'react';
-// import { useRouter } from 'next/router';
-// import { AuthLayout } from '@/components/auth/authlayout';
-// import { Input } from '@/components/ui/input';
-// import { Button } from '@/components/ui/button';
-// import { useAuth } from '@/contexts/AuthContext';
-// import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+import { useState } from "react";
+import Link from "next/link";
 
-// export default function Login() {
-//   const [formData, setFormData] = useState({
-//     email: '',
-//     password: '',
-//   });
-//   const [errors, setErrors] = useState<Record<string, string>>({});
-//   const [loading, setLoading] = useState(false);
-//   const router = useRouter();
-//   const { login } = useAuth();
+export default function AuthPage() {
+  const [isSignUp, setIsSignUp] = useState(false);
 
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const { name, value } = e.target;
-//     setFormData(prev => ({
-//       ...prev,
-//       [name]: value
-//     }));
-//     if (errors[name]) {
-//       setErrors(prev => ({ ...prev, [name]: '' }));
-//     }
-//   };
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    accountType: "",
+    agreeTerms: false,
+  });
 
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     setErrors({});
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-//     try {
-//       await login(formData.email, formData.password);
-//       // Let middleware handle the redirect
-//     } catch (error: any) {
-//       setErrors({
-//         submit: error.response?.data?.message || 'Login failed. Please try again.'
-//       });
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+  // Handle form submit
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-//   return (
-//     <AuthLayout
-//       title="Sign in to your account"
-//       subtitle={
-//         <div className="text-sm text-gray-600 dark:text-gray-400">
-//           Don't have an account?{' '}
-//           <Link href="/register" className="font-medium text-primary-600 hover:text-primary-500">
-//             Sign up
-//           </Link>
-//         </div>
-//       }
-//     >
-//       <form onSubmit={handleSubmit} className="space-y-6">
-//         {errors.submit && (
-//           <div className="rounded-xl bg-red-50 dark:bg-red-900/50 p-4 text-sm">
-//             <div className="flex">
-//               <svg className="h-5 w-5 text-red-400 dark:text-red-500" viewBox="0 0 20 20" fill="currentColor">
-//                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-//               </svg>
-//               <p className="ml-3 text-red-700 dark:text-red-400">{errors.submit}</p>
-//             </div>
-//           </div>
-//         )}
+    // console.log("Form Submitted:", formData);
 
-//         <div className="space-y-5">
-//           <Input
-//             label="Email address"
-//             name="email"
-//             type="email"
-//             autoComplete="email"
-//             required
-//             value={formData.email}
-//             onChange={handleChange}
-//             error={errors.email}
-//             icon={<EnvelopeIcon className="h-5 w-5" />}
-//           />
+    if (!isSignUp) {
+      console.log("Form Submitted:", {
+        email: formData.email,
+        password: formData.password,
+      });
+    } else {
+      console.log("Form Submitted:", formData);
+    }
+    setFormData({
+      fullName: "",
+      email: "",
+      password: "",
+      accountType: "",
+      agreeTerms: false,
+    });
+  };
 
-//           <Input
-//             label="Password"
-//             name="password"
-//             type="password"
-//             autoComplete="current-password"
-//             required
-//             value={formData.password}
-//             onChange={handleChange}
-//             error={errors.password}
-//             icon={<LockClosedIcon className="h-5 w-5" />}
-//           />
-
-//           <div className="flex items-center justify-between">
-//             <div className="flex items-center">
-//               <input
-//                 id="remember-me"
-//                 name="remember-me"
-//                 type="checkbox"
-//                 className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-//               />
-//               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-//                 Remember me
-//               </label>
-//             </div>
-
-//             <div className="text-sm">
-//               <Link href="/forgot-password" className="font-medium text-primary-600 hover:text-primary-500">
-//                 Forgot your password?
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-
-//         <Button
-//           type="submit"
-//           loading={loading}
-//           fullWidth
-//           size="lg"
-//         >
-//           Sign in
-//         </Button>
-
-        
-//       </form>
-//     </AuthLayout>
-//   );
-// }
-
-export default function Login(){
   return (
-    <div>
-      ritesh
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
+          Rent<span className="text-black">Market</span>
+        </h2>
+        <p className="mb-6 text-center text-gray-600">
+          {isSignUp ? "Create a new account" : "Sign in to your account"}
+        </p>
+
+        {/* Toggle Buttons */}
+        <div className="mb-4 flex justify-center border-b pb-2">
+          <button
+            className={`mr-4 pb-2 font-semibold w-1/2 ${
+              !isSignUp ? "border-b-2 border-black text-black" : "text-gray-500"
+            }`}
+            onClick={() => setIsSignUp(false)}
+          >
+            Sign In
+          </button>
+          <button
+            className={`pb-2 font-semibold w-1/2 ${
+              isSignUp ? "border-b-2 border-black text-black" : "text-gray-500"
+            }`}
+            onClick={() => setIsSignUp(true)}
+          >
+            Sign Up
+          </button>
+        </div>
+
+        {/* Login Form */}
+        {!isSignUp ? (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border-2 border-gray-100 rounded-xl p-2 focus:border-gray-400 focus:ring-black outline-none bg-white text-black placeholder-gray-500"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full border-2 border-gray-100 rounded-xl p-2 focus:border-gray-400 focus:ring-black outline-none bg-white text-black placeholder-gray-500"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            {/* <div className="mb-4 flex items-center justify-between">
+              <label className="flex items-center text-sm bg-white text-black">
+                <input type="checkbox" name="rememberMe" className="mr-2 h-5" />{" "}
+                Remember me
+              </label>
+              <a href="#" className="text-sm text-black hover:underline">
+                Forgot password?
+              </a>
+            </div> */}
+            
+
+            <Link href={"/crm/listings"}>
+              <button
+                type="submit"
+                className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
+              >
+                Sign In
+              </button>
+            </Link>
+          </form>
+        ) : (
+          // Signup Form
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="w-full border-2 border-gray-100 rounded-xl p-2 focus:border-gray-400 focus:ring-black outline-none bg-white text-black placeholder-gray-500"
+                placeholder="Enter your full name"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border-2 border-gray-100 rounded-xl p-2 focus:border-gray-400 focus:ring-black outline-none bg-white text-black placeholder-gray-500"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full border-2 border-gray-100 rounded-xl p-2 focus:border-gray-400 focus:ring-black outline-none bg-white text-black placeholder-gray-500"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Account Type
+              </label>
+              <div className="flex space-x-4">
+                <label className="flex items-center text-black">
+                  <input
+                    type="radio"
+                    name="accountType"
+                    value="buyer"
+                    checked={formData.accountType === "buyer"}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />{" "}
+                  Buyer
+                </label>
+                <label className="flex items-center text-black">
+                  <input
+                    type="radio"
+                    name="accountType"
+                    value="seller"
+                    checked={formData.accountType === "seller"}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />{" "}
+                  Seller
+                </label>
+              </div>
+            </div>
+
+            <div className="mb-4 flex items-center justify-between">
+              <label className="text-sm text-black cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="agreeTerms"
+                  checked={formData.agreeTerms}
+                  onChange={handleChange}
+                  className="mr-2"
+                />
+                I agree to the{" "}
+              </label>
+
+              <a href="#" className="text-black underline">
+                Terms and Privacy Policy
+              </a>
+            </div>
+
+            <Link href={"/crm/listings"}>
+              <button
+                type="submit"
+                className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
+              >
+                Create Account
+              </button>
+            </Link>
+          </form>
+        )}
+      </div>
     </div>
-  )
+  );
 }
