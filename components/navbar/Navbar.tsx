@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           </div>
         ) : (
           <div className="flex gap-5">
-          <Link href="/auth/login">
+          <Link href="/login">
             <span className="px-4 py-2 bg-black text-white rounded-md cursor-pointer">
               Login
             </span>
