@@ -124,7 +124,7 @@ export default function AuthPage() {
 </label>
 
 
-            <Link href={"/"}>
+            <Link href={"/crm/listings"}>
               <button
                 type="submit"
                 className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
@@ -225,7 +225,7 @@ export default function AuthPage() {
               </a>
             </div>
 
-            <Link href={"/"}>
+            <Link href={"/crm/listings"}>
               <button
                 type="submit"
                 className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
