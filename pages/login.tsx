@@ -106,7 +106,7 @@ export default function AuthPage() {
               />
             </div>
 
-            {/* <div className="mb-4 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <label className="flex items-center text-sm bg-white text-black">
                 <input type="checkbox" name="rememberMe" className="mr-2 h-5" />{" "}
                 Remember me
@@ -114,17 +114,17 @@ export default function AuthPage() {
               <a href="#" className="text-sm text-black hover:underline">
                 Forgot password?
               </a>
-            </div> */}
-            <label className="flex items-center text-sm bg-white text-black cursor-pointer">
+            </div>
+            {/* <label className="flex items-center text-sm bg-white text-black cursor-pointer">
   <input type="checkbox" className="hidden peer" />
   <span className="w-5 h-5 border border-gray-400 rounded-sm flex items-center justify-center peer-checked:bg-[#fca311] peer-checked:border-[#fca311]">
     ✔
   </span>
   <span className="ml-2">Remember me</span>
-</label>
+</label> */}
 
 
-            <Link href={"/crm/listings"}>
+            <Link href={"/"}>
               <button
                 type="submit"
                 className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
@@ -225,7 +225,7 @@ export default function AuthPage() {
               </a>
             </div>
 
-            <Link href={"/crm/listings"}>
+            <Link href={"/"}>
               <button
                 type="submit"
                 className="w-full rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
